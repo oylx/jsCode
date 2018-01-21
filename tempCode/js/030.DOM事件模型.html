@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #grand1,#father1,#son1{
+            padding: 20px;
+            border: 1px solid #000;
+        }
+    </style>
+</head>
+<body>
+    <!-- onclick="要执行的代码",一旦用户点击,浏览器就eval("要执行的代码"),尝试eval("print")与eval("print()"),得到不同的结果 -->
+    <button onclick="print" id="x">x</button> <!--无效-->
+    <button onclick="print()" id="y">y</button><!--有效-->
+    <button onclick="print.call()" id="z">z</button><!--有效-->
+
+    <button  id="a">a</button>
+    <button  id="b">b</button>
+    <button  id="c">c</button>
+
+    <div>
+        <button id="xxx">click me</button>
+    </div>
+    <div>
+        <div id="grand1">
+            爷爷
+            <div id="father1">
+                爸爸
+                <div id="son1">儿子</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- <script>
+    function print(v){
+        if(v){
+            alert(v)
+        }else{
+            alert('x')
+        }
+    }
+</script> -->
+
+<!-- <script>
+    function print(v){
+        if(v){
+            alert(v)
+        }else{
+            alert('x')
+        }
+    }
+    a.onclick = print;
+    b.onclick = print('b');
+    c.onclick = print.call(null,'c');
+    
+</script> -->
+
+<!-- <script>
+        
+    eval("print")
+    // ƒ print(v){
+    //     if(v){
+    //         alert(v)
+    //     }else{
+    //         alert('x')
+    //     }
+    // }
+    eval("print()")
+    //弹出x
+        
+</script> -->
+
+<!-- <script>
+    //addEventListener:队列
+    var xxx = document.querySelector('#xxx');
+    function f1(){
+        console.log(1)
+    }
+    function f2(){
+        console.log(2)
+    }
+    function f3(){
+        console.log(3)
+    }
+    xxx.addEventListener('click',f1)
+    xxx.removeEventListener('click',f1)
+    xxx.addEventListener('click',f2)
+</script> -->
+
+<script>
+    var grand1 = document.querySelector('#grand1');
+    var father1 = document.querySelector('#father1');
+    var son1 = document.querySelector('#son1');
+
+    // grand1.addEventListener('click',function grand1(){
+    //     console.log('爷爷冒泡')
+    // })
+    // father1.addEventListener('click',function father1(){
+    //     console.log('爸爸冒泡')
+    // },false)
+    
+    son1.addEventListener('click',function son1(){
+        console.log('儿子冒泡')
+    },false)
+    son1.addEventListener('click',function son1(){
+        console.log('儿子捕获')
+    },true)
+    //不传第3个参数/false,冒泡阶段,儿子爸爸爷爷
+    //传第3个参数true,捕获阶段,爷爷爸爸儿子
+    //如果节点为最后一个节点,没有父节点的触发事件,冒泡和捕获的函数执行看当前函数定义位置的前后
+</script>
+</html>

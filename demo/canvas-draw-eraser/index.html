@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>canvas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <canvas id="canvas" width="300px" height="300px"></canvas>
+    <div id="actions" class="actions">
+        <svg id="brushIcon" class="icon active" aria-hidden="true">
+            <use xlink:href="#icon-pen"></use>
+        </svg>
+        <svg id="eraseIcon" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-erase"></use>
+        </svg>
+        <svg id="saveIcon" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-save"></use>
+        </svg>
+        <svg id="deleteIcon" class="icon" aria-hidden="true">
+            <use xlink:href="#icon-delete"></use>
+        </svg>
+        <!--<button id="eraser">橡皮擦</button>-->
+        <!--<button id="brush">画笔</button>-->
+    </div>
+    <ol class="color">
+        <li class="colorIcon black active" color="black"></li>
+        <li class="colorIcon red" color="red"></li>
+        <li class="colorIcon blue" color="blue"></li>
+    </ol>
+    <ol class="lineWidth">
+        <li id="thin" class="thin"></li>
+        <li id="thick" class="thick"></li>
+    </ol>
+</body>
+<script src="///at.alicdn.com/t/font_484023_ycjyf7p0oiy919k9.js"></script>
+<script src="js/index.js"></script>
+</html>

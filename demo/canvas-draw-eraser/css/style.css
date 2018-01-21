@@ -1,0 +1,79 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    fill: currentColor;
+    overflow: hidden;
+}
+body{
+    background-color: #ffffff;
+}
+#canvas{
+    position: fixed;
+    left:0;
+    top:0;
+}
+.actions{
+    position: absolute;
+    padding: 20px;
+    left: 0;
+    top:0;
+}
+.actions>.icon{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0 10px 0 0;
+    transition: all 0.3s;
+}
+.actions>.icon.active{
+    transform:scale(1.5);
+    color:red;
+}
+ol.color{
+    position: absolute;
+    padding: 0 0 0 20px;
+    left:0;
+    top:4rem;
+    list-style: none;
+}
+ol.lineWidth{
+    position: fixed;
+    right: 1rem;
+    top:2rem;
+    list-style: none;
+}
+.color li{
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    box-shadow: 0 0 3px rgba(0,0,0,0.25);
+    margin: 20px 0 0 0;
+    transition: all 0.3s;
+}
+.color li:hover,.lineWidth li:hover,.actions svg:hover{
+    cursor: pointer;
+}
+.color li.active{
+    transform: scale(1.3);
+}
+.red{
+    background-color: red;
+}
+.blue{
+    background-color: blue;
+}
+.black{
+    background-color: black;
+}
+.thick,.thin{
+    width: 2rem;
+    height: 5px;
+    background-color: black;
+}
+.thick{
+    margin: 20px 0 0 0;
+    height: 10px;
+}

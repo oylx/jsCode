@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        .images{position: relative;width: 400px;height: 300px;overflow: hidden;margin: 100px auto 0;}
+        .image{position: absolute;width:100%;height:300px;left: 0;transition: all 0.5s}
+        .image.current{
+            transform: translateX(0px);
+            z-index: 1;
+        }
+        .image.leave{
+            transform: translateX(-400px)
+        }
+        .image.enter{
+            transform: translateX(400px)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="images">
+        <img src="./image/banner1.jpg" alt="图片" class="image">
+        <img src="./image/banner2.jpg" alt="图片" class="image">
+        <img src="./image/banner3.jpg" alt="图片" class="image">
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    
+    $(function($){
+        
+        let n=1,maxN = $('.images img').length;
+        (function(cur){
+            goToCurrent($(`.images > img:nth-child(${x(cur)})`))
+            $(`.images > img:nth-child(${x(cur)})`).addClass('current').siblings().addClass('enter')
+        })(n)
+        setInterval(()=>{
+            goToLeave(getImage(n))
+                .one('transitionend', (e)=>{
+                    goToEnter($(e.currentTarget))
+                })
+            goToCurrent(getImage(n+1))
+            n += 1
+        },3000)
+        function x(n){
+            n = n>maxN?(n%maxN===0?maxN:n%maxN):n
+            return n
+        }//如maxN=3,则n=1,2,3,4,5,6等,返回1,2,3
+        function getImage(n){
+            return $(`.images img:nth-child(${x(n)})`);
+        }
+        function goToCurrent($node){
+            $node.removeClass('enter').addClass('current');
+        }
+        function goToLeave($node){
+            $node.removeClass('current').addClass('leave');
+            return $node
+        }
+        function goToEnter($node){
+            $node.removeClass('leave').addClass('enter');
+        }
+        
+
+        //ready方式一
+        // $(document).ready(function(){}) 
+
+        //ready方式二
+        //未重构
+        // $(function($){
+        //     //初始状态
+        //     $('.images img:nth-child(1)').addClass('current');
+        //     $('.images img:gt(0)').addClass('enter');
+
+        //     //运动过程
+        //     var n = 1;
+        //     setInterval(function(){
+        //         if(n>3){
+        //             n=1
+        //         }
+        //         console.log(n)
+        //         var cur =n,next = (n===3? 1:n+1);
+        //         $('.images img:nth-child('+cur+')').removeClass('current').addClass('leave').one('transitionend',function(ele){
+        //             //动画transition执行完毕
+        //             $(ele.currentTarget).removeClass('leave').addClass('enter');
+        //         });
+        //         $('.images img:nth-child('+next+')').removeClass('enter').addClass('current');
+        //         n++;
+        //     },3000)
+        // })
+    })
+</script>
+</html>

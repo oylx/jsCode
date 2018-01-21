@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<!-- <script>
+    //JavaScript中的可枚举属性与不可枚举属性
+    var obj = {
+        a:1,
+        b:2,
+        c:'c',
+        length:1
+    }
+    Object.prototype.link='link';
+    Object.defineProperty(obj,'test',{
+        value:'test',
+        enumerable:false
+    })
+    for(let i in obj){
+        if(obj.hasOwnProperty(i)){//不可枚举
+            console.log(i)
+        }
+    }
+    console.log(Object.getOwnPropertyNames(obj))//枚举+不可枚举
+
+    for(var v of obj){
+        console.log(v)
+    }
+</script> -->
+
+<script>
+
+    // var obj ={
+    //     id:1,
+    //     groups:['fronted','coder'],
+    //     name:'hello',
+    // }
+    // 'id=1&&name=hello';
+    // var str = ''
+    // for(let i in obj){
+    //     if(obj.hasOwnProperty(i)){//不可枚举
+    //         if(Object.prototype.toString.call(obj[i]) === '[object Array]'){
+    //             for(var j=0;j<obj[i].length;j++){
+    //                 str+=i+'='+obj[i][j]+(j===obj[i].length-1?'':'&&')
+    //             }
+    //         }else{
+    //             str+=i+'='+obj[i]+'&&';
+    //         }   
+    //     }
+    // }
+    // console.log(str)
+
+
+
+    let obj = { id: 10001, name: 'hello', groups: ['chen','oy'] } 
+    function parseToQuery(obj) {
+            let arr = Object.entries(obj)
+            let str = []
+            for (let i = 0; i < arr.length; i++) { 
+                if(Object.prototype.toString.call(arr[i][1]) === '[object Array]'){
+                    arr[i][1].forEach(ele => {
+                        str.push(arr[i][0] + "=" + ele)
+                    });
+                }else{
+                    str.push(arr[i][0] + "=" + arr[i][1]) 
+                }
+                
+            }
+            return str.join('&&')
+        }
+    console.log(parseToQuery(obj))
+    
+</script>
+</html>

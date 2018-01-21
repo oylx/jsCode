@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .wrapper{
+            width: 300px;
+            height:190px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        .images{
+            display: flex;
+            align-items: flex-start;
+            width: 300px;
+            transition: all .5s;
+        }
+        ul,li{
+            list-style: none;
+        }
+        .buttons{
+            width: 300px;
+            margin: 20px auto 0;
+            display: flex;
+            justify-content: center
+        }
+        .buttons li{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background: rgba(0,0,0,.2)
+        }
+        .buttons li:hover{
+            cursor: pointer;
+        }
+        .buttons li.red{
+            background: red;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- <div>
+        <div id="parent"></div>
+        <div id="console"></div>
+        <div id="alert"></div>
+        <div id="self"></div>
+        <div id="close"></div>
+    </div> -->
+    <div class="wrapper">
+        <div class="images" id="images">
+            <img width="300" src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515843138628&di=7fce732ef437c79aeba1e97dc079ae18&imgtype=0&src=http%3A%2F%2Fimg.pconline.com.cn%2Fimages%2Fupload%2Fupc%2Ftx%2Fitbbs%2F1509%2F25%2Fc37%2F13191947_1443175954316.jpg" alt="图片1">
+            <img width="300" src="https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/3b87e950352ac65c384964b2faf2b21192138aa6.jpg" alt="图片2">
+            <img width="300" src="https://timgsa.baidu.com/timg?image&quality=80&size=b10000_10000&sec=1515833111&di=1de3efa4c5925ad48352973f320d1b45&src=http://img.taopic.com/uploads/allimg/111001/44723-1110010R34987.jpg" alt="图片3">
+            <img width="300" src="https://ss0.baidu.com/94o3dSag_xI4khGko9WTAnF6hhy/zhidao/pic/item/3b87e950352ac65c384964b2faf2b21192138aa6.jpg" alt="图片4">
+        </div>
+    </div>
+    <ul id="buttons" class="buttons">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </div>
+
+</body>
+<script>
+    // console.log(parent);
+    // console.log(console);
+    // console.log(alert);
+    // console.log(self);
+    // console.log(x);
+    // console.log(window)
+
+    //尽量不要使用全局变量，使用局部变量
+    //声明立即执行函数()/!/+/-/~或者call
+
+    // (function() {
+    //     var parent = document.querySelector('#parent');
+    //     console.log(parent)
+    // })();
+    // (function() {
+    //     var parent = document.querySelector('#parent');
+    //     console.log(parent)
+    // }.call())
+    // !function() {
+    //     var parent = document.querySelector('#parent');
+    //     console.log(parent)
+    // }.call()
+    // +function() {
+    //     var parent = document.querySelector('#parent');
+    //     console.log(parent)
+    // }.call()
+    // -function() {
+    //     var parent = document.querySelector('#parent');
+    //     console.log(parent)
+    // }.call()
+    // ~function() {
+    //     var parent = document.querySelector('#parent');
+    //     console.log(parent)
+    // }.call()
+
+    //页面放大缩小引起css问题
+    //尽量用currentTarget代替target,事件委托的时候不同
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    (function(){
+
+        let buttons = $('#buttons > li');
+        for(let i=0;i<buttons.length;i++){
+            $(buttons[i]).on('click',function(ele){
+                let l = i*-300;
+                $('#images').css({
+                    'transform':'translateX('+l+'px)'
+                })
+                num = i;
+                activeButton(buttons.eq(num));//activeButton($(buttons[i])); $或者eq切换成jQuery对象
+            })
+        }
+
+        //自动轮播
+        let num = 0,timeId;
+        function activeButton($button){
+            $button.addClass('red').siblings('.red').removeClass('red');
+        }
+        $(buttons[num%buttons.length]).trigger('click');
+        //定时器 return setInterval(func,time)
+        function setTimer(){
+            return setInterval(() =>{
+                num++;
+                $(buttons[num%buttons.length]).trigger('click');
+            },3000);
+        }
+        timeId = setTimer();
+
+        $('.wrapper').on('mouseenter',function(){
+            clearInterval(timeId);
+        })
+        $('.wrapper').on('mouseleave',function(){
+            timeId = setTimer();
+        })
+
+    })()
+
+</script>
+</html>
