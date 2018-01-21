@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    /* .demo{
+      border:10px solid red;
+      height: 100px;
+      margin:10px;
+    }
+    .parent{
+      outline: 1px solid green;
+    }
+    .child{
+      height: 100px;
+      outline: 1px solid red;
+      margin-top: 100px;
+    } */
+  </style>
+</head>
+<body>
+  
+
+  <div class="demo"></div>
+  <!-- display:flex;或者display:table;能隔开margin合并 -->
+  <!-- <div style="display:flex;"></div> -->
+  <div style="display:table;"></div>
+  <!-- display:flex;或者display:table;能隔开margin合并 -->
+  <div class="demo"></div>
+  <div class="demo"></div>
+
+  <div class="parent">
+    <div class="child"></div>
+  </div>
+
+  <div class="clickBox">1</div>
+  <div class="clickBox">2</div>
+  <div class="clickBox">3</div>
+</body>
+<!-- <script>
+  var str1 = 'hello world';
+  console.log(typeof str1)//string
+  console.log(str1 instanceof String)//false
+  console.log(str1.charAt(0))
+
+  var str2 = new String('abcdefg');
+  console.log(typeof str2);
+  console.log(str2 instanceof String)
+  console.log(str2.charCodeAt(0))
+</script> -->
+
+<!-- <script>
+  var clickBoxs = document.querySelectorAll('.clickBox');
+
+  for (var i = 0; i < clickBoxs.length; i++){
+      clickBoxs[i].onclick =x(i)
+  }
+  function x(i){
+    return function(){
+      console.log(i)
+    }
+  }
+  
+</script> -->
+
+<!-- <script>
+  var obj ={
+    1:'a',
+    2:'b',
+    3:'c'
+  }
+  obj[4]='d';
+  for(var key in obj){
+    console.log(typeof key)
+  }
+  var myArray = [ 1, 2, 3 ];
+  for (var v of myArray) {
+    console.log( v );
+  }
+  var it = myArray[Symbol.iterator]();
+  console.log(it.next())
+</script> -->
+
+<!-- <script>
+  var obj1 = Object();
+  var obj2 = Object(null);
+  var obj3 = Object(undefined);
+  console.log(obj1 === obj2)//false
+
+  console.log(obj1)
+  console.log(obj2)
+  console.log(obj3)
+
+  var obj4 = new Object(1)
+  console.log(obj4 instanceof Object)
+  console.log(obj4 instanceof Number)
+
+  var obj5 = new Object('1')
+  console.log(obj5 instanceof Object)
+  console.log(obj5 instanceof String)
+
+   var obj6 = new Object(true);
+   console.log(obj6 instanceof Boolean);
+   console.log(obj6 instanceof Object);
+
+</script> -->
+
+<!-- <script>
+  var arr1 = [1];
+  var arr2 = [1];
+  console.log(arr1 === arr2)//地址不一样
+  
+  var arr = [1];
+  var obj = Object(arr)//返回原始数组
+  console.log(arr === obj)
+
+  var value = {x:'1'};
+  var obj = Object(value) // 返回原对象
+  console.log(obj === value) // true
+
+  var fn = function(){};
+  var value = Object(fn)
+  console.log(fn === value) // true
+
+  var x = Number(1);
+  console.log(x)
+  var obj = Object(x);
+  console.log(x === obj)
+
+  var o1 = {a:1};
+  var o2 = new Object(o1);//new Object(value)则表示新生成一个对象，它的值是value
+  var o3 = Object(o1);//Object(value)表示将value转成一个对象
+  console.log(o1 === o2)
+  console.log(o1 === o3)
+
+</script> -->
+
+<!-- <script>
+  //Object.keys()和Object.getOwnPropertyNames()返回的结果是一样的。只有涉及不可枚举属性时，才会有不一样的结果。Object.keys方法只返回可枚举的属性（详见《对象属性的描述对象》一章），Object.getOwnPropertyNames方法还返回不可枚举的属性名。
+  //一般情况几乎总是使用Object.keys方法，遍历数组的属性
+  var arr = ['h','e','l','l','o'];
+  console.log(Object.keys(arr))//['0','1','2','3','4']
+  console.log(Object.getOwnPropertyNames(arr))//['0','1','2','3','4','length']数组的length属性是不可枚举的属性
+</script> -->
+
+<!-- <script>
+  //valueOf方法的作用是返回一个对象的“值”，默认情况下返回对象本身。
+  var array = ["ABC", true, 12, -5];
+  console.log(array.valueOf());//["ABC", true, 12, -5]
+
+  var date = new Date(2013, 7, 18, 23, 11, 59, 230);
+  console.log(date.valueOf()); //1376838719230
+
+  var obj = new Object();
+  console.log(obj.valueOf());//{}
+  console.log(1+obj.valueOf())
+
+  var foo2 =  new Function("x", "y", "return x + y;");
+  console.log( foo2.valueOf() );
+    /*
+    ƒ anonymous(x,y
+    ) {
+    return x + y;
+    }
+    */
+
+  // String：返回字符串值
+  var str = "http://www.xyz.com";
+  console.log( str.valueOf() === str );   // true
+
+  // new一个字符串对象
+  var str2 = new String("http://www.xyz.com");
+  // 两者的值相等，但不全等，因为类型不同，前者为string类型，后者为object类型
+  console.log( str2.valueOf() === str2 );   // false
+
+
+</script> -->
+
+<!-- <script>
+  //toString方法的作用是返回一个对象的字符串形式，默认情况下返回类型字符串。
+  var o1 = new Object({a:1});
+  var o2 = new Object([1, 2, 3]);
+  var o3 = '123';
+  console.log(o3.toString())//123
+
+  //Object.prototype.toString方法返回对象的类型字符串，因此可以用来判断一个值的类型
+  Object.prototype.toString.call(2) // "[object Number]"
+  Object.prototype.toString.call('') // "[object String]"
+  Object.prototype.toString.call(true) // "[object Boolean]"
+  Object.prototype.toString.call(undefined) // "[object Undefined]"
+  Object.prototype.toString.call(null) // "[object Null]"
+  Object.prototype.toString.call(Math) // "[object Math]"
+  Object.prototype.toString.call({}) // "[object Object]"
+  Object.prototype.toString.call([]) // "[object Array]"
+  
+</script> -->
+
+<script>
+  //Object.prototype.hasOwnProperty方法接受一个字符串作为参数，返回一个布尔值，表示该实例对象自身是否具有该属性。
+  var obj = {
+    p: 123
+  };
+
+  obj.hasOwnProperty('p') // true
+  obj.hasOwnProperty('toString') // false
+
+</script>
+
+<!-- <script>
+  //打印1-10
+  var x =Array.apply(null, {length: 10}).map(Number.call, Number)
+  Array.apply(null, {length: 10}).forEach((ele,key) => {
+    console.log(key)
+  })
+
+  console.log(Array.apply(null, {length: 10}).map(Number.call, Number))
+
+  Array.from({length:10}).map((value,key) =>{
+    console.log(key+1)
+  })
+</script> -->
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  
+
+
+  //1.改变原数组
+  //sort pop push shift unshift splice
+
+
+
+
+
+  //2.不改变原数组
+  //slice concat from forEach filter reduce  reduceRight reverse
+
+  //slice浅拷贝arr.slice(begin,end)=>[begin,end);arr.slice()=>[0,end);arr.slice(begin)=>[begin,end);
+  var arr = [1,2,3,4];
+  var newArr = arr.slice(1);//[2,3,4]
+
+  //concat方法用于合并两个或多个数组
+  var num1 = [1, 2, 3],
+    num2 = [4, 5, 6],
+    num3 = [7, 8, 9];
+  var num4 = num1.concat(num2,num3)//// arr3 is a new array [ "a", "b", "c", "d", "e", "f" ]
+
+  //Array.from() 从一个类似数组或可迭代对象中创建一个新的数组实例 Array.from(arrayLike, mapFn, thisArg)
+  let s = new Set(['foo', window]); //window对象
+  Array.from(s)// ["foo", window]
+  let m = new Map([[1, 2], [2, 4], [4, 8]]);
+  Array.from(m);// [[1, 2], [2, 4], [4, 8]]
+
+  function f() {
+    return Array.from(arguments);
+  }
+  f(1, 2, 3);// [1, 2, 3]
+
+  Array.from([1, 2, 3], x => x + x);      // [2, 4, 6]
+  Array.from({length: 5}, (v, i) => i);   // [0, 1, 2, 3, 4]
+
+
+
+  //3.
+  //Array.isArray() 用于确定传递的值是否是一个 Array true/fasle
+
+  //Array.of() 方法创建一个具有可变数量参数的新数组实例，而不考虑参数的数量或类型
+  Array.of(7);       // [7] 
+  Array.of(1, 2, 3); // [1, 2, 3]
+
+  Array(7);          // [ , , , , , , ]
+  Array(1, 2, 3);    // [1, 2, 3]
+</script>
+</html>

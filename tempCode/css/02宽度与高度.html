@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div{
+      border: 1px solid red;
+      font-size: 20px;
+    }
+    span{
+      border: 1px solid green;
+      display: inline-block;
+      width: 4em;
+      text-align: justify;
+      line-height: 20px;
+      overflow: hidden;
+      height: 20px;
+    }
+    span::after{
+      content: '';
+      display: inline-block;
+      width:100%;
+      border: 1px solid blue;
+    }
+    p{
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <span>姓名</span>
+    <br>
+    <span>联系方式</span>
+  </div>
+  <p>
+    1111111111111-11111111111111-11111111111111111-11111111111111111111111111-11111111111111-11111111111111111-1111111111111
+    222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
+    3
+    4
+    5
+
+  </p>
+</body>
+</html>
