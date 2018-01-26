@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    div{
+    /* div{
       border: 1px solid red;
       font-size: 20px;
     }
@@ -24,27 +24,67 @@
       display: inline-block;
       width:100%;
       border: 1px solid blue;
-    }
+    } 
     p{
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
+    }*/
+    p{
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+    } 
+    .parent{
+      outline: 10px solid green;
+    }
+    .son{
+      border: 5px solid red;
+      line-height: 40px;
+      margin: 20px;
     }
   </style>
 </head>
 <body>
+  <h3>令两个字和四个字的宽度相同</h1>
+  <p>span:text-align: justify;overflow: hidden;<br>span::after{content: "";display: inline-block;width:100%;}</p>
   <div>
-    <span>姓名</span>
-    <br>
+    <span>姓名</span><br>
     <span>联系方式</span>
   </div>
+  <h3>
+    单行文字溢出
+  </h3>
+  <p>原始p{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;}</p>
+  <h3>
+    多行文字溢出(css multiline text ellipsis)
+  </h3>
+  <p>改进p{overflow: hidden;display: -webkit-box;-webkit-line-clamp: 4;-webkit-box-orient: vertical;}</p>
   <p>
     1111111111111-11111111111111-11111111111111111-11111111111111111111111111-11111111111111-11111111111111111-1111111111111
     222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222222
-    3
-    4
-    5
-
   </p>
+  <h3>
+    极端情况:多行文字竖排排列，需要高度限定40,尽量不给height，只设定line-height,padding
+  </h3>
+  <div>
+    1 
+    2 
+    3 
+    4 
+    5 
+    6 
+    7 
+    8 
+    9 
+    10 
+  </div>
+
+  <div class="parent">
+    <div class="son">
+      2333
+    </div>
+  </div>
 </body>
 </html>

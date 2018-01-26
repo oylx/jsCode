@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        span{
+            font-size: 12px;
+            color: #ffffff;
+            display: inline-block;
+            width: 100px;
+            height:100px;
+            margin: 20px;
+            text-align: center;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="wrapper1"></div>
+    <div id="wrapper2"></div>
+    <span style="font-size:20px;">1111</span>
+    
+</body>
+<script>
+    // #xxxxxx->rgb(r,g,b)
+    var arr = ['ff0000','ff003c','ff006c','ff00c6','d200ff','7200ff','0000ff','00f0ff','00ff5a','f0ff00'],arrRgb=[];
+    var str1 = '',str2='',wrapper1 = document.getElementById('wrapper1'),wrapper2 = document.getElementById('wrapper2');
+    for(let i=0;i<arr.length;i++){
+        arrRgb.push(`rgb(${y(arr[i],0,2)},${y(arr[i],2,4)},${y(arr[i],4,6)})`);
+        str1+=`<span style="background:#${arr[i]}">#${arr[i]}</span>`
+    }
+    wrapper1.innerHTML = str1;
+
+    //rgba(r,g,b)->#xxxxxx
+    for(let i=0;i<arrRgb.length;i++){
+        var num=[],color,regExp = /[0-9]+/g;
+        // num = arrRgb[i].slice(arrRgb[i].indexOf('(')+1,arrRgb[i].indexOf(')')).split(',');
+        while (temp =regExp.exec(arrRgb[i])) {
+            num.push(temp[0])
+        }
+        color = `#${x(num[0])}${x(num[1])}${x(num[2])}`;
+        str2+=`<span style="background:${color}">${color}</span>`;
+    }
+    function x(val){
+        var temp = parseInt(val).toString(16);//10进制转换成16进制
+        return temp.length===1?`0${temp}`:temp
+    }
+    function y(val,start,end){
+        return parseInt('0x'+val.slice(start,end));//16进制转换成10进制
+    }
+    wrapper2.innerHTML = str2;
+
+</script>
+    
+    
+</html>
