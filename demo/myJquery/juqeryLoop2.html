@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>无缝轮播</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            boeder: 0;
+        }
+
+        ul,
+        ol,
+        li {
+            list-style: none;
+        }
+
+        html {
+            background-color: #F2F2F2;
+        }
+
+        .icon {
+            width: 3em;
+            height: 3em;
+            vertical-align: -0.15em;
+            fill: #dddddd;
+            overflow: hidden;
+        }
+
+        .clearfix::after {
+            content: '';
+            display: block;
+            clear: both;
+        }
+
+        .wrapper {
+            margin: 100px auto 0;
+            width: 920px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #D7D7D7;
+            box-shadow: 0 0 3px #AAAAAA;
+        }
+        .wrapper ul {
+            display: flex;
+            transition: all 1s;
+        }
+
+        .wrapper ul li {
+            height: 400px;
+        }
+
+        .olWrapper {
+            background: linear-gradient(to bottom, #F8F8F8, #ECECEC);
+            text-align: center;
+            height: 48px;
+            border-bottom: solid 1px #ffffff;
+        }
+
+        .olWrapper ol {
+            display: inline-block;
+            margin: 0 auto;
+        }
+
+        .olWrapper ol li {
+            float: left;
+            width: 60px;
+            height: 46px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #ffffff;
+            border-right-color: #DCDCDC;
+            border-bottom: none;
+        }
+
+        .olWrapper ol li.active {
+            background: radial-gradient(circle at 50%, #ffffff, #AFAFAF);
+            position: relative;
+        }
+        .olWrapper ol li.active::after{
+            content: '';
+            border: 6px solid transparent;
+            border-top-color: #ffffff;
+            position: absolute;
+            top: -1px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .left,
+        .right {
+            width: auto;
+            height: auto;
+            position: absolute;
+            z-index: 1;
+            left: 0;
+            top: 40%;
+        }
+
+        .right {
+            left: auto;
+            right: 50px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <ul id="slides">
+            <li>
+                <img src="./image/b1.jpg" alt="图片">
+            </li>
+            <li>
+                <img src="./image/b2.jpg" alt="图片">
+            </li>
+            <li>
+                <img src="./image/b3.jpg" alt="图片">
+            </li>
+            <li>
+                <img src="./image/b4.jpg" alt="图片">
+            </li>
+        </ul>
+        <div class="olWrapper">
+            <ol class="clearfix" id="buttonWrapper">
+                <li>
+                    <img src="./image/l1.png" alt="图片">
+                </li>
+                <li>
+                    <img src="./image/l2.png" alt="图片">
+                </li>
+                <li>
+                    <img src="./image/l3.png" alt="图片">
+                </li>
+                <li>
+                    <img src="./image/l4.png" alt="图片">
+                </li>
+            </ol>
+        </div>
+
+        <div href="javascript:void(0)" class="left" id="previous">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-left"></use>
+            </svg>
+        </div>
+        <div href="javascript:void(0)" class="right" id="next">
+            <svg class="icon" aria-hidden="true">
+                <use xlink:href="#icon-right"></use>
+            </svg>
+        </div>
+    </div>
+</body>
+<script src="//at.alicdn.com/t/font_561858_r12q7vt9yheel8fr.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    let $slides = $('#slides');
+    let $buttons = $('#buttonWrapper li');
+    let $liImages = $('#slides li');
+    let current = 0;
+    $buttons.eq(0).addClass('active')
+
+    makeFakeSlides();
+    $slides.css({ transform: 'translateX(-920px)' });
+    bindEvents();
+    $('#next').on('click', function () {
+        goToSlide(current + 1)
+    })
+    $('#previous').on('click', function () {
+        goToSlide(current - 1)
+    })
+    let timer = setInterval(function () {
+        goToSlide(current + 1)
+    }, 2000)
+    $('.wrapper').on('mouseenter', function () {
+        window.clearInterval(timer)
+        //clearInterval(timer)
+    }).on('mouseleave', function () {
+        timer = setInterval(function () {
+            goToSlide(current + 1)
+        }, 2000)
+    })
+
+    function makeFakeSlides() {
+        let $firstLiImg = $liImages.eq(0).clone(true);
+        let $lastLiImg = $liImages.eq($liImages.length - 1).clone(true);
+        $slides.append($firstLiImg);
+        $slides.prepend($lastLiImg);
+    }
+    function bindEvents() {
+        $('#buttonWrapper').on('click', 'li', function (e) {
+            let $button = $(e.currentTarget);
+            let index = $button.index();
+            goToSlide(index);
+        })
+    }
+    function goToSlide(index) {
+        if (index === $liImages.length) {
+            index = 0;
+        } else if (index === -1) {
+            index = $liImages.length - 1;
+        }
+        if (current === $liImages.length - 1 && index === 0) {//last to first
+            $slides.css({ transform: `translateX(${-920 * ($liImages.length + 1)}px)` })
+                .one('transitionend', function () {
+                    $slides.hide().offset()
+                    $slides.css({ transform: `translateX(${-920 * (index + 1)}px)` }).show()
+                })
+        } else if (current === 0 && index === $liImages.length - 1) {//first to last
+            $slides.css({ transform: `translateX(0px)` })
+                .one('transitionend', function () {
+                    $slides.hide().offset()
+                    $slides.css({ transform: `translateX(${-920 * (index + 1)}px)` }).show()
+                })
+        } else {
+            $slides.css({ transform: `translateX(${-920 * (index + 1)}px)` });
+        }
+        current = index;
+        $buttons.eq(current).siblings('li').removeClass('active');
+        $buttons.eq(current).addClass('active')
+    }
+</script>
+
+</html>
