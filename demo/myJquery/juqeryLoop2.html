@@ -7,106 +7,23 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>无缝轮播</title>
     <style>
-        * {
-            padding: 0;
-            margin: 0;
-            boeder: 0;
-        }
-
-        ul,
-        ol,
-        li {
-            list-style: none;
-        }
-
-        html {
-            background-color: #F2F2F2;
-        }
-
-        .icon {
-            width: 3em;
-            height: 3em;
-            vertical-align: -0.15em;
-            fill: #dddddd;
-            overflow: hidden;
-        }
-
-        .clearfix::after {
-            content: '';
-            display: block;
-            clear: both;
-        }
-
-        .wrapper {
-            margin: 100px auto 0;
-            width: 920px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid #D7D7D7;
-            box-shadow: 0 0 3px #AAAAAA;
-        }
-        .wrapper ul {
-            display: flex;
-            transition: all 1s;
-        }
-
-        .wrapper ul li {
-            height: 400px;
-        }
-
-        .olWrapper {
-            background: linear-gradient(to bottom, #F8F8F8, #ECECEC);
-            text-align: center;
-            height: 48px;
-            border-bottom: solid 1px #ffffff;
-        }
-
-        .olWrapper ol {
-            display: inline-block;
-            margin: 0 auto;
-        }
-
-        .olWrapper ol li {
-            float: left;
-            width: 60px;
-            height: 46px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 1px solid #ffffff;
-            border-right-color: #DCDCDC;
-            border-bottom: none;
-        }
-
-        .olWrapper ol li.active {
-            background: radial-gradient(circle at 50%, #ffffff, #AFAFAF);
-            position: relative;
-        }
-        .olWrapper ol li.active::after{
-            content: '';
-            border: 6px solid transparent;
-            border-top-color: #ffffff;
-            position: absolute;
-            top: -1px;
-            left: 50%;
-            transform: translateX(-50%);
-        }
-
-        .left,
-        .right {
-            width: auto;
-            height: auto;
-            position: absolute;
-            z-index: 1;
-            left: 0;
-            top: 40%;
-        }
-
-        .right {
-            left: auto;
-            right: 50px;
-        }
-
+        * {padding: 0;margin: 0;boeder: 0;}
+        ul,ol,li {list-style: none;}
+        html { background-color: #F2F2F2; } 
+	    .icon { width: 3em; height: 3em; vertical-align: -0.15em; fill: #dddddd; overflow: hidden; }
+        .clearfix::after { content: ''; display: block; clear: both; }
+        .wrapper { margin: 100px auto 0; width: 920px; overflow: hidden; position: relative; border: 1px solid #D7D7D7; box-shadow: 0 0 3px #AAAAAA; }
+        .wrapper ul { display: flex; transition: all 1s; }
+        .wrapper ul li { height: 400px; }
+        .olWrapper { background: linear-gradient(to bottom, #F8F8F8, #ECECEC); text-align: center; height: 48px; border-bottom: solid 1px #ffffff; }
+        .olWrapper ol { display: inline-block; margin: 0 auto; }
+        .olWrapper ol li { float: left; width: 60px; height: 46px; display: flex; justify-content: center; align-items: center; border: 1px solid #ffffff; border-right-color: #DCDCDC; border-bottom: none; }
+        .olWrapper ol li.active { background: radial-gradient(circle at 50%, #ffffff, #AFAFAF); position: relative; }
+        .olWrapper ol li.active::after{ content: ''; border: 6px solid transparent; border-top-color: #ffffff; position: absolute; top: -1px; left: 50%; transform: translateX(-50%); }
+        .left, .right { width: auto; height: auto; position: absolute; z-index: 1; left: 0; top: 40%; }
+        .left:hover,.right:hover{ cursor: pointer; }
+        .icon:hover{ fill: #AAAAAA; }
+        .right { left: auto;right: 50px;}
     </style>
 </head>
 
