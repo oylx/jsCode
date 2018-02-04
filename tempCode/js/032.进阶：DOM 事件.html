@@ -54,22 +54,22 @@
 </body>
 <script src="//code.jquery.com/jquery-2.1.1.min.js"></script>
 <script>
-    var wrapper = document.querySelector('#wrapper'),btn =  document.querySelector('#btn'),content =  document.querySelector('#content');
+    var wrapper = document.querySelector('#wrapper'),btn =  document.querySelector('#btn'),popover =  document.querySelector('#popover');
     btn.addEventListener('click',function(){
-        var flag = [].indexOf.call(content.classList,'hide');
+        var flag = [].indexOf.call(popover.classList,'hide');
         if(flag>-1){
-            content.classList.remove('hide');
+            popover.classList.remove('hide');
             setTimeout(function(){
                 $(document).one('click',function(){
-                    content.classList.add('hide');
+                    popover.classList.add('hide');
                 })
             },0)
         }else{
-            content.classList.add('hide');
+            popover.classList.add('hide');
         }
         
     })
-    wrapper.addEventListener('click',function(e){
+    popover.addEventListener('click',function(e){
         e.stopPropagation();
     })
     
