@@ -5,8 +5,10 @@ btn.addEventListener('click',()=>{
     req.send()
     req.onreadystatechange = ()=>{
         if(req.readyState === 4){
-            if(req.status === 200){
+            if(req.status >= 200 && req.status<300){
                 console.log(JSON.parse(req.responseText))
+            }else if(req.status>=400){
+                console.log('failed')
             }
         }
     }
