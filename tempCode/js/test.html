@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    /**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number[]}
+ */
+    var twoSum = function (nums, target) {
+        var ary = [],result = [];
+        for (var i = 0; i < nums.length; i++) {
+            ary[nums[i]] = i;
+        }
+        for(var i = 0;i<ary.length;i++){
+            if(ary[i] != undefined && ary[target - i] != undefined){
+                result.push([i,target-i])
+                ary[target - i ] = undefined
+            }
+        }
+        return result
+    };
+    var nums = [1,3,2,4,6,5,7,8,0],target = 8;
+    // twoSum(nums,target)
+    console.log(twoSum(nums,target))
+
+</script>
+
+</html>
