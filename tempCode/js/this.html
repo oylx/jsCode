@@ -22,6 +22,9 @@
     </ul>
 </body>
 <script>
+    //1.没有this的话要转换，有this的话是啥就是啥
+    //2.没有this，简单格式，如fn(),非严格模式为window，严格模式undefined;复杂格式obj.fn()等价于obj.fn.call(obj),this为obj
+    //3.有this的话this.optons.fn2.call(this),this就是this
     //demo1
     var obj = {
         foo: function () {

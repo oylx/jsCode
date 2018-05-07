@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+</body>
+<script>
+    function fn() {
+         console.log(this.__proto__)
+        //  console.log(typeof this)
+        console.log(Object.getOwnPropertyNames(this).sort()) 
+        // for (var i in this) {
+        //     if (this.hasOwnProperty(i)) {
+        //         console.log(i);
+        //     }
+        }
+
+
+        
+    var x = new fn()
+
+    // 不可枚举的对象属性
+    // var nonenum = Object.create({}, {
+    //     getFoo: {
+    //         value: function () {
+    //             return this.foo;
+    //         },
+    //         enumerable: false
+    //     }
+    // });
+    // nonenum.foo = 1;
+    // nonenum.asj = 2;
+
+    // // 获取对象可枚举或不可枚举的属性
+    // console.log(Object.getOwnPropertyNames(nonenum).sort()); // 输出 ["asj", "foo", "getFoo"]
+
+    // // 获取对象可枚举的属性
+    // console.log(Object.keys(nonenum).sort()); // 输出 ["asj", "foo"]
+
+    // // 返回直接定义在该对象上的可枚举属性
+    // for (var i in nonenum) {
+    //     if (nonenum.hasOwnProperty(i)) {
+    //         console.log(i); // 输出 foo asj
+    //     }
+    // }
+        
+    //     // console.log(this.__proto__)
+    // }
+</script>
+
+</html>
