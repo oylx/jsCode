@@ -7,3 +7,4 @@
 - https://oylx.github.io/jsCode/demo/canvas-draw-eraser/index.html
 - https://oylx.github.io/jsCode/demo/myBookmarks/index.html
 - https://oylx.github.io/jsCode/demo/resume/index.html
+- https://oylx.github.io/jsCode/demo/dynamicResume/index.html
