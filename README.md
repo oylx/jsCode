@@ -8,3 +8,4 @@
 - https://oylx.github.io/jsCode/demo/myBookmarks/index.html
 - https://oylx.github.io/jsCode/demo/resume/index.html
 - https://oylx.github.io/jsCode/demo/dynamicResume/index.html
+- https://oylx.github.io/jsCode/demo/cartoon/index1.html
