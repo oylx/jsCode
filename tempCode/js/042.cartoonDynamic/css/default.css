@@ -1,0 +1,150 @@
+*{margin: 0;padding: 0;}
+html{font-size: 100px;}
+#pikachu{
+    background-color: #FFE600;
+    width: 4.2rem;
+    height: 2.5rem;
+    position: relative;
+    margin: 1rem auto 0;
+}
+.eye{
+    width: 0.57rem;
+    height: 0.57rem;
+    border-radius: 50%;
+    background-color: #000000;
+    position: absolute;
+}
+.eye.left{
+    left: 0.6rem
+}
+.eye.right{
+    right: 0.6rem
+}
+.eye::after{
+    content: '';
+    width: 0.25rem;
+    height: 0.25rem;
+    display: block;
+    background: #ffffff;
+    border-radius: 50%;
+    border: #000000 solid 0.02rem;
+    position: absolute;
+    left: 0.08rem;
+    top:0.02rem;
+}
+.nose{
+    width: 0;
+    height: 0;
+    border-radius: .1rem .1rem .1rem;
+    border-width:.1rem;
+    border-style: solid;
+    border-color:black transparent transparent transparent;
+    overflow:hidden;
+    position: absolute;
+    left: 50%;
+    top: 0.3rem;
+    transform: translateX(-50%);
+}
+.nose:hover{
+    animation:mymove 2s infinite;
+}
+.cheek{
+    width: 0.6rem;
+    height: 0.6rem;
+    background-color: #FC0D1C;
+    border: solid 2px #000000;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 1rem;
+}
+.cheek.left{
+    left: .25rem;
+}
+.cheek.right{
+    right: .25rem;
+}
+.upperLip{
+    width: 0.6rem;
+    height: 0.2rem;
+    border: 0.02rem solid #000;
+    position: absolute;
+    top: .6rem;
+    transform: rotate(-15deg);
+    background-color: #FDE348;
+    z-index: 1;
+}
+.upperLip.left{
+    right: 50%;
+    border-bottom-left-radius: 0.3rem 0.2rem;
+    border-top: none;
+    border-right: none;
+}
+.upperLip.right{
+    left: 50%;
+    border-bottom-right-radius: 0.3rem 0.2rem;
+    border-top: none;
+    border-left: none;
+    transform: rotate(15deg)
+}
+.lowerLip-wrapper{
+    width: 1.3rem;
+    height: 1rem;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: .8rem;
+    overflow: hidden;
+}
+.lowerLip{
+    width: 1.3rem;
+    height: 6rem;
+    border-radius: 0.65rem/3rem;
+    background-color: #990513;
+    border: 0.02rem solid #000;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0.02rem;
+    overflow: hidden;
+}
+.lowerLip::after{
+    content:'';
+    width: 1rem;
+    height: 1rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 5.25rem;
+    transform: translateX(-50%);
+    left: 50%;
+    background: #FC4A62;
+}
+@keyframes mymove{
+    0%{
+        transform: rotate(0deg) translateX(-50%)
+    }
+    25%{
+        transform: rotate(-30deg) translateX(-50%)
+    }
+    50%{
+        transform: rotate(0deg) translateX(-50%)
+    }
+    75%{
+        transform: rotate(0deg) translateX(-50%)
+    }
+    100%{
+        transform: rotate(0deg) translateX(-50%)
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

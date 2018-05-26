@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <div class="form_wrapper">
+        <form id="signUpForm">
+            <h1>注册</h1>
+            <div class="row">
+                <label>邮箱</label>
+                <input type="text" name="email">
+                <span class="error">邮箱不正确</span>
+            </div>
+            <div class="row">
+                <label for="password">密码</label>
+                <input type="password" name="password">
+                <span class="error">请输入密码</span>
+            </div>
+            <div class="row">
+                <label for="confirmPassword">确认密码</label>
+                <input type="password" name="confirmPassword">
+                <span class="error">请保持密码一致</span>
+            </div>
+            <div class="row">
+                <input type="submit" value="注册" id="submit">
+            </div>
+        </form>
+    </div>
+</body>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.js"></script>
+<script src="./main.js"></script>
+
+</html>

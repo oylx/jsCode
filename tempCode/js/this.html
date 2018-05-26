@@ -37,6 +37,17 @@
     bar() // 打印出的 this 是 window
 
 
+    var obj = {
+        b:'b',
+        fn:function(){
+            console.log(this);
+        }
+    }
+    function fn(cb){
+        cb()
+    }
+    fn(obj.fn)//this指向window,虽然传递obj.fn，但是执行的时候是cb()
+
     //转换代码
     func(p1, p2)//等价于
     func.call(undefined, p1, p2)
@@ -134,7 +145,7 @@
             console.log(this)  //app
         },
         fn2(a) {
-            consoel.log(this)  //app
+            console.log(this)  //app
         },
         fn3: (a) => {
             console.log(this)  //箭头函数没有this，查找上一级作用域window
