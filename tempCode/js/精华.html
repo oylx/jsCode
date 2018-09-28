@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+
+    // 3.统计一个数组中有多少个不重复的单词：
+    var arr = ["apple","orange","apple","orange","pear","orange"];
+    var res = arr.reduce((prev,next,index,array)=>{
+        prev[next] = prev[next]+1 || 1;//精华
+        console.log(prev)
+        return prev
+    },{})
+    console.log(res)
+</script>
+</html>

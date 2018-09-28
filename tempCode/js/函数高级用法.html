@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 迭代:some every filter forEach map
+    // 归并:reduce reduceRight
+    // 1.对当前数组每个元素乘于100
+    var b = [1,2,3];
+    var f = []
+    b.forEach(function(v){
+        f.push(v*100)
+    });
+    console.log(f)
+    var b = [1,2,3];
+    var c = b.map(function(v){ return v*100} )
+    console.log(c);   //[100, 200, 300]
+
+    // 2.对数组的求和
+    var b = [1,2,3];
+    var sum = 0;
+    b.forEach(function(v){
+        sum+=v;
+    });
+    console.log(sum)
+
+    // 3.求数组中每个元素的平方
+    var res = [1,4,9].map(function(val){
+        return Math.pow(val,2)
+    });
+    console.log(res); 
+    // 求数组中每个元素的平方根
+    var res = [1,4.1,9.1].map(Math.floor);
+    console.log(res)
+
+    var arr= [
+        {key: 1, value: 10}, 
+        {key: 2, value: 20}, 
+        {key: 3, value: 30}
+    ];
+    var reformattedArray = arr.map(function(obj) { 
+        var rObj = {};
+        rObj[obj.key] = obj.value;
+        return rObj;
+    });
+    console.log(reformattedArray);
+
+    // 筛选出大于等于18的数 ----- 对于数组
+    var ages = [32, 33, 16, 40];
+    var adult = ages.filter(function(v){
+        return v>=18
+    })
+    console.log(adult);
+
+    var numbers = [1,2,3,4,5,4,3,2,1];
+    var everyResult = numbers.every(function(item, index, array){
+        return (item > 2);
+    });
+    console.log(everyResult)
+
+    var someResult = numbers.some(function(item, index, array){
+            return (item > 2);
+    });
+    // alert(someResult);
+
+
+    //reduce
+    // reduce(callback,initiaValue)会传入两个变量，回调函数(callback)和初始值(initiaValue)。
+    // 假设函数有个传入参数，prev和next，index和array。 Prev和next是你必须要了解的。
+    // 当没有传入初始值时，prev是从数组中第一个元素开始的，next是第二个函数。
+    // 但是当传入初始值（initiaValue）后,第一个prev将是initivalValue，next将是数组中的第一个元素
+    // 1.计算数组总和
+    var arr = [1,2,3,4,5,6,7,8,9,10];
+    var res = arr.reduce((prev,next,index,arr)=>{
+        return prev+next
+    })
+    console.log(res)
+
+    // 2.合并二维数组
+    var red = [[0, 1], [2, 3], [4, 5]].reduce((prev,next,index,array)=>{
+        return prev.concat(next)
+    })
+    console.log(red)
+
+    // 3.统计一个数组中有多少个不重复的单词：
+    var arr = ["apple","orange","apple","orange","pear","orange"];
+    var res = arr.reduce((prev,next,index,array)=>{
+        prev[next] = prev[next]+1 || 1;//精华
+        console.log(prev)
+        return prev
+    },{})
+    console.log(res)
+    
+    var arry1 = ['a','b','c','d'];
+    var arry2 = ['x','b','c','y'];
+    var res = arry1.reduce((prev,next,index,array)=>{
+        prev[next] = 1;
+        return prev
+    },{})
+    var x = arry2.filter((item,index,array)=>{
+        return res[item]
+    })
+    console.log(x)
+
+    var arr1 = [1,2,3,4,5],arr2 = [4,5,6,7,8,1];
+    var res = arr1.reduce((prev,next,index,array)=>{
+        prev[next] = 1;
+        return prev
+    },{})
+
+    var x = arr2.filter((item,index,array)=>{
+        return !res[item]
+    })
+    console.log(x)
+
+    // 如何比较两个数组，并求出两个数组中不同的元素组成的新的数组？
+    arr1 = [1,2,3,4,5];
+    arr2 = [4,5,6,7,8,1];
+
+    var merge = arr1.concat(arr2).filter(function(v, i, arr) {
+        return arr.indexOf(v) == arr.lastIndexOf(v);
+    });
+
+    let difference = arr1.filter(x=>arr2.indexOf(x)===-1).concat(arr2.filter(x=>arr1.indexOf(x)===-1))
+    console.log(difference)
+    
+    //js判断两个数组有相同的值:（前提：每个数组中的数值唯一）
+    var arr1=["1","2","3"];
+    var arr2=[1,"f","g","3"];
+    var res = arr1.concat(arr2).filter((v,i,arr)=>{
+        return arr.indexOf(v) !== arr.lastIndexOf(v)
+    })
+    console.log(res);
+
+    //js比较两个对象数组取出不同的值
+    var array1 = [ {"Num": "A "  },{"Num": "B" }];
+    var array2 = [ 
+        {"Num": "A ","Name": "t1 " }, 
+        {"Num": "B","Name": "t2"},
+        {"Num": "C " ,"Name": "t3 "}
+    ];
+    //计算数组两个值之间的所有整数和
+    var arr=[1.1,4];
+    var min =Math.ceil(Math.min(...arr)),max = Math.ceil(Math.max(...arr));
+    var arr = new Array(max-min+1).fill(min),sum = 0;
+    console.log(min,max,arr)
+    // arr.forEach((v,i,arr)=>{
+    //     sum+=v+i;
+    // })
+    for(var i = min+1;i<max;i++){
+        sum+=i
+    }
+    console.log(sum)
+
+    //一个数组，从小到大排序 ------ 对于数组
+    var arr = [2, 6, 3, 9, 1, 6];
+    arr.sort(function(a, b) {
+        return a - b
+    })
+    console.log(arr)
+
+
+    //一组商品，按价格从底到高排序 ----- 对于json数组
+    var produts = [
+        {
+            name: 'xssg',
+            price: 10,
+        },
+        {
+            name: 'xssg',
+            price: 20,
+        },
+        {
+            name: 'xssg',
+            price: 8,
+        },
+        {
+            name: 'xssg',
+            price: 4,
+        },
+        {
+            name: 'xssg',
+            price: 7,
+        },
+        {
+            name: 'xssg',
+            price: 1,
+        }
+    ]
+    produts.sort(function(cur, nex) {
+        return cur.price - nex.price;
+    })
+    console.log(produts)
+
+    // 对象数组中，当对象中的指定属性相等时，累加其属性值
+    var arr = [
+        { id:1, name: '商户1', price: 400 },
+        { id:3, name: '商户3', price: 200 },
+        { id:2, name: '商户2', price: 100 },
+        { id:1, name: '商户1', price: 200 },
+        { id:4, name: '商户4', price: 800 },
+        { id:2, name: '商户2', price: 600 },
+        { id:1, name: '商户1', price: 400 }
+    ];
+    var p =arr.reduce((p,n,i,a)=>{
+        if(!p[n['id']]){
+            p[n['id']]={id:n['id'],name:n['name'],price:n['price']}
+        }else{
+            p[n['id']]['price']+=n['price']
+        }
+        return p
+    },{})
+    console.log(p)
+
+    // js检测某个元素在数组中的索引值
+    var arr = [2,53,23,'test',9,'array'];
+    //判断array在不在数组arr中
+    arr.indexOf('test') !== -1 ? console.log('存在',arr.indexOf('test')) : console.log('不存在');
+    //但是IE9以前的版本都不支持此方法，那咱们就只能扩展一个：
+    if(!Array.indexOf){
+        Array.prototype.indexOf = function(el){
+            for (var i=0,n=this.length; i<n; i++){
+                if (this[i] === el){
+                    return i;
+                }
+            }
+            return -1;
+        }  
+    }
+
+    var array=[
+        {'50026460': '孕产妇营养品'},
+        {'50022517': '孕妇装/孕产妇用品/营养'}
+    ];
+    for(var i=0;i<array.length;i++){
+        var item=array[i];
+        var key=Object.keys(item);
+        console.log(key);
+        console.log(item[key]);
+    }
+
+    var orders = [
+        {id:'0', name:'工厂',size:13,parentID:'',ConsigneeInfo:{Area:"广东省广州市天河区",ConsigneeAddress:"尔尔",Id:980}},
+        {id:'1', name:'分销A',size:13,parentID:'0',ConsigneeInfo:{Area:"天津省天津市和平区",ConsigneeAddress:"省道",Id:2200}},
+        {id:'2', name:'分销B',size:13,parentID:'0',ConsigneeInfo:{Area:"河北省秦皇岛市北戴河区",ConsigneeAddress:"地方",Id:22}},
+        {id:'1', name:'分销A',size:13,parentID:'0',ConsigneeInfo:{Area:"广西壮族自治区玉林市博白县",ConsigneeAddress:"江宁镇大街004号",Id:2200}},
+    ];
+
+    for(var i=0;i<orders.length;i++){
+        if(orders[i].ConsigneeInfo.Area.indexOf('省') == -1){
+            orders[i].ConsigneeInfo.areaProvince = orders[i].ConsigneeInfo.Area.split('自治区')[0]+'自治区';
+            orders[i].ConsigneeInfo.areaCity = orders[i].ConsigneeInfo.Area.split('自治区')[1].split('市')[0]+'市';
+        }else{
+            orders[i].ConsigneeInfo.areaProvince = orders[i].ConsigneeInfo.Area.split('省')[0]+'省';
+            orders[i].ConsigneeInfo.areaCity = orders[i].ConsigneeInfo.Area.split('省')[1].split('市')[0]+'市';
+        }
+
+        orders[i].ConsigneeInfo.areaCount = orders[i].ConsigneeInfo.Area.split('市')[1];
+    }
+    console.log(orders);
+
+
+
+    // 二维数组 --> json对象
+    var source = [
+        ['ID', 'name', 'size', 'parentID'],
+        ['0', '工厂', 13, ''],
+        ['1', '分销站A', 13, '0'],
+        ['2', '分销站B', 13, '0']
+    ];
+    // var result = source.slice(1).map(
+    //     vals=>{
+    //         vals.reduce((obj,val,i)=>{
+    //             Object.assign(obj,{
+    //                 [source[0][i]]:val
+    //             })
+    //         },{});
+    //     }
+    // );
+    var result = source.slice(1).map(
+        vals => 
+            vals.reduce((obj, val) => 
+                Object.assign(obj, {
+                    [source[0][vals.indexOf(val)]]: val
+                }
+            ), {})); 
+    console.log(result)
+
+    // json对象 --> 二维数组
+    
+
+
+
+</script>
+</html>
