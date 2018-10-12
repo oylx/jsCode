@@ -29,3 +29,16 @@ equal = (Math.abs(x - y) < 0.000001)
 >> true
 ```
 
+试题
+
+```
+var two   = 0.2
+var one   = 0.1
+var eight = 0.8
+var six   = 0.6
+[two - one == one, eight - six == two]
+>>[true,false]
+
+结果精准度未知，有时true，有时false
+```
+
