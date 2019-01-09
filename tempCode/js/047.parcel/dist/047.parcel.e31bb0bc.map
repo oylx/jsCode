@@ -1,0 +1,1 @@
+{"version":3,"sources":["index.js"],"names":["console","log","alert"],"mappings":";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAAA,OAAO,CAACC,GAAR,CAAY,aAAZ;AACAC,KAAK,CAAC,CAAD,CAAL","file":"047.parcel.e31bb0bc.map","sourceRoot":"..","sourcesContent":["console.log('hello world')\nalert(2)"]}
