@@ -14,4 +14,4 @@
 
 当前文章
 
-- https://oylx.github.io/jsCode/blog/js/md/函数节流和函数去抖.md
+- https://github.com/oylx/jsCode/blob/master/blog/js/md/函数节流和函数去抖.md
