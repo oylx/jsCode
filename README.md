@@ -15,3 +15,4 @@
 当前文章
 
 - https://github.com/oylx/jsCode/blob/master/blog/js/md/函数节流和函数去抖.md
+- https://github.com/oylx/jsCode/blob/master/blog/js/md/js执行机制.md
