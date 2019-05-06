@@ -148,3 +148,28 @@ let result =array8._find(function(val){
     return val>0
 })
 console.log(result);
+
+Array.prototype._map=function(callback){
+    if(typeof this == null){
+        throw new TypeError('this is null')
+    }
+    if(typeof callback!=='function'){
+        throw new TypeError('callback is not a function')
+    }
+    var oldArr = new Object(this),
+        len = oldArr.length >>> 0,
+        thisArg = arguments.length>=2?arguments[1]:void 0,
+        i =0,
+        newArr=[];
+        console.log(Array.isArray(oldArr))
+    while(i<len){
+        if(i in oldArr){
+            var val = oldArr[i];
+            newArr[i] = callback.call(thisArg,val,i,oldArr)
+        }
+        i++
+    }
+    return newArr
+}
+let array9=array8._map((val)=>{return val+1})
+console.log(array9)
