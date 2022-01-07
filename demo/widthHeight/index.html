@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      /* border: solid 1px #000000; */
+    }
+    .border {
+      border:solid 1px #000000;
+    }
+    .m10 {
+      margin: 10px;
+    }
+    .p10 {
+      padding: 10px;
+    }
+    .relative {
+      position:relative;
+      /* left: 20px; */
+    }
+    .fixed {
+      position: fixed;
+    }
+    .gold {
+      background: gold;
+    }
+    .pink {
+      background: pink;
+    }
+    .green {
+      background: green;
+    }
+    .max {
+      max-width: 1000px;
+      max-height: 500px;
+    }
+    .hidden {
+      overflow: auto;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="box box1 gold">
+    <div class="box box2 pink">
+      <div class="box box3 green"></div>
+    </div>
+  </div>
+</body>
+<script>
+  // 1.offsetLeft从字面意思上理解，就是以父元素作为参照点（父元素的定位不能是static），当前元素相对于父元素左边的偏移量。
+  // offsetTop, offsetLeft:只读属性。要确定的这两个属性的值，首先得确定元素的offsetParent。
+  // offsetParent指的是距该元素最近的position不为static的祖先元素，如果没有则指向body元素。
+  // 确定了offsetParent，offsetLeft指的是元素左侧偏移offsetParent的距离，同理offsetTop指的是上侧偏移的距离。
+  // 真正的总结：如果本身不为fixed&&父级（一直向上追溯）有定位，则offsetParent为父级，其他都为body
+  const box1 = document.querySelector('.box1')
+  const box2 = document.querySelector('.box2')
+  const box3 = document.querySelector('.box3')
+  const boxList = document.querySelectorAll('.box')
+  
+  /**
+   * 
+   * a.本身定位不为fixed,父级有定位=>父元素offsetParent
+   * offsetTop和offsetLeft就根据最近的开启定位的父元素的内边框来计算距离，父元素开启定位，那就按照父元素offsetParent作为标准来计算
+  */
+  const fn1 = () => {
+    boxList.forEach(box => box.className += ' p10 relative')
+    boxList.forEach((box,i) => console.log(`box${i+1}框offsetLeft:${box.offsetLeft},offsetTop:${box.offsetTop}`))
+    // box1框offsetLeft:0 offsetTop:0
+    // box2框offsetLeft:10 offsetTop:10
+    // box3框offsetLeft:10 offsetTop:10
+  }
+
+  /**
+   * b.本身定位不为fixed,父级没有定位=>body
+   * offsetTop和offsetLeft就根据最近的开启定位的父元素的内边框来计算距离，如果父元素都没有开启定位，那就按照父元素为body作为标准来计算
+   */
+  const fn2 = () => {
+    boxList.forEach(box => box.className += '  p10')
+    boxList.forEach((box,i) => console.log(`box${i+1}框offsetLeft:${box.offsetLeft},offsetTop:${box.offsetTop}`))
+    // box1框offsetLeft:0 offsetTop:0
+    // box2框offsetLeft:10 offsetTop:10
+    // box3框offsetLeft:20 offsetTop:20
+  }
+
+  /**
+   * c.本身定位为fixed
+   * 不管父元素有没有开启定位，那就按照父元素为body作为标准来计算
+   */
+  const fn3 = () => {
+    boxList.forEach(box => box.className += '  p10')
+    box2.className += ' relative'
+    box3.className += ' fixed'
+    boxList.forEach((box,i) => console.log(`box${i+1}框offsetLeft:${box.offsetLeft},offsetTop:${box.offsetTop}`))
+    // box1框offsetLeft:0 offsetTop:0
+    // box2框offsetLeft:10 offsetTop:10
+    // box3框offsetLeft:20 offsetTop:20
+  }
+
+  
+  // 2.offsetWidth = style.width + style.padding + style.border
+  // offsetHeight, offsetWidth：只读属性。这两个属性返回的是元素的高度或宽度，包括元素的边框、内边距和滚动条。返回值是一个经过四舍五入的整数。
+  const fn4 = () => {
+    boxList.forEach(box => box.className += ' m10 p10 border')
+    boxList.forEach((box,i) => console.log(`box${i+1}框offsetWidth:${box.offsetWidth},offsetHeight:${box.offsetHeight}`))
+    // box1框offsetWidth:1004,offsetHeight:106
+    // box2框offsetWidth:962,offsetHeight:64
+    // box3框offsetWidth:920,offsetHeight:22
+  }
+
+  // 3.clientHeight = style.height + style.padding  - scrollbar.height
+  // 只读属性，返回当前节点的可视宽度和可视高度（不包括边框、外边距）
+  const fn5 = () => {
+    let str = ''
+    for(let i=0; i<100; i++) {
+      str+=`<div>box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}box${i}</div>`
+    }
+    boxList.forEach(box => {
+      box.className += ' m10 p10 border hidden max'
+      let ele = document.createElement('div')
+      ele.innerHTML = str
+      box.prepend(ele)
+    })
+    boxList.forEach((box,i) => console.log(`box${i+1}框clientWidth:${box.clientWidth},clientHeight:${box.clientHeight}`))
+    // box1框clientWidth:1002,clientHeight:104
+    // box2框clientWidth:960,clientHeight:62
+    // box3框clientWidth:918,clientHeight:20
+  }
+
+  // 4.scrollTop、scrollLeft、scrollWidth、scrollHeight
+  // scrollTop, scrollLeft：图中已经表示的很明白了。如果元素不能被滚动，则为0
+  // scrollHeight, scrollWidth：只读属性。返回元素内容的整体尺寸，包括元素看不见的部分（需要滚动才能看见的）。返回值包括padding，但不包括margin和border。
+  document.addEventListener('click',(e)=> {
+    const arr = ['scrollTop', 'scrollLeft', 'scrollWidth', 'scrollHeight']
+    const arr1 = ['clientX', 'clientY', 'pageX', 'pageY']
+
+    arr.forEach(v => console.log(v,':',boxList[0][v],';'))
+    console.log(boxList[0].getBoundingClientRect());
+    arr1.forEach(v => console.log(v,':',e[v],';'))
+
+  })
+
+  // 5.event.clientX、event.clientY、event.pageX、event.pageY
+  // event.clientX /event.clientY是目标点距离浏览器可视范围的X轴/Y轴坐标
+  // event.pageX /event.pageY 是目标点距离document最左上角的X轴/Y轴坐标
+
+  // 6.Element.getBoundingClientRect()：只读，返回浮点值。这个方法非常有用，常用于确定元素相对于视口的位置。该方法会返回一个DOMRect对象，包含left, top, width, height, bottom, right六个属性：
+  // left, right, top, bottom：都是元素（不包括margin）相对于视口的原点（视口的上边界和左边界）的距离。
+  // height, width：元素的整体尺寸，包括被滚动隐藏的部分；padding和border参与计算。另外，height =bottom-top, width=right-left
+
+
+  fn5()
+
+
+</script>
+</html>
